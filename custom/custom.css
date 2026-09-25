@@ -1,0 +1,6 @@
+/* Pylon site: custom overrides. Loaded last on every page. Push to the content repo; live in about a minute, no Framer publish.
+   Target elements with the hooks documented in CSS-HOOKS.md, for example:
+   [data-pylon="post.title"] { }
+   [data-pylon="cta.heading"] { }
+   [data-pylon="listing.card"] [data-pylon="card.title"] { }
+   [data-p="p142"] { }   <- unique id of a single element on one page; find it in the browser inspector */

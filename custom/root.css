@@ -1,0 +1,30 @@
+/* Pylon site: root tokens and global accessibility layer.
+   Loaded on every page after the site's own CSS. Edit here for global changes; page or element overrides go in custom.css.
+   Hooks: every element inside the app carries data-p="p<N>" (unique per element, document order) and key regions carry
+   data-pylon="<name>" (see CSS-HOOKS.md). Example: [data-pylon="post.title"] { letter-spacing: -0.02em } */
+:root {
+  --pylon-ink: #111111; --pylon-ink-70: rgba(17, 17, 17, 0.7); --pylon-ink-50: rgba(17, 17, 17, 0.5); --pylon-ink-35: rgba(17, 17, 17, 0.35);
+  --pylon-paper: #ffffff; --pylon-paper-2: #fafafa; --pylon-stroke: rgba(17, 17, 17, 0.12); --pylon-stroke-strong: rgba(17, 17, 17, 0.24);
+  --pylon-accent: #2f6df6; --pylon-success: #1f7a3f; --pylon-error: #c0392b;
+  --pylon-radius: 4px; --pylon-radius-lg: 6px; --pylon-radius-xl: 8px;
+  --pylon-space-1: 4px; --pylon-space-2: 8px; --pylon-space-3: 12px; --pylon-space-4: 16px; --pylon-space-6: 24px; --pylon-space-8: 32px; --pylon-space-12: 48px;
+  --pylon-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; --pylon-mono: "Fira Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --pylon-text-12: 12px; --pylon-text-14: 14px; --pylon-text-16: 16px; --pylon-text-18: 18px; --pylon-text-20: 20px;
+  --pylon-focus: 0 0 0 3px rgba(47, 109, 246, 0.35); --pylon-motion: 0.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+  color-scheme: light;
+}
+/* Keyboard focus: visible, consistent, never removed */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible { outline: 2px solid var(--pylon-ink); outline-offset: 3px; border-radius: var(--pylon-radius); }
+:where(a, button):focus:not(:focus-visible) { outline: none; }
+/* Skip link: first tab stop on every page */
+.pylon-skip { position: absolute; left: 16px; top: -100px; z-index: 1000; padding: 10px 14px; background: var(--pylon-ink); color: #fff; border-radius: var(--pylon-radius-lg); font: 500 14px/1 var(--pylon-font); text-decoration: none; transition: top var(--pylon-motion); }
+.pylon-skip:focus { top: 16px; }
+/* Screen-reader-only utility */
+.pylon-sr { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+/* Prose links stay distinguishable without colour */
+.post-prose a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.post-prose a:hover { text-decoration-thickness: 2px; }
+/* Motion respects the system setting everywhere */
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; } }
+/* Forced-colors (Windows High Contrast): keep borders and focus */
+@media (forced-colors: active) { .hs-form .hs-input, .pylon-cta-secondary, .hs-form .hs-button.primary { border: 1px solid CanvasText; } }
