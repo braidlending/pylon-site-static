@@ -34,7 +34,7 @@ Pylon Lending, Inc. https://www.pylonlending.com. Contact: https://www.pylonlend
 - [News](https://www.pylonlending.com/resources/category/news)
 - [Releases](https://www.pylonlending.com/resources/category/release-notes)
 
-## Posts, guides and briefings
+## Posts
 - [A brief history of the mortgage factory problem - Pylon](https://www.pylonlending.com/resources/a-brief-history-of-the-mortgage-factory-problem)
 - [August 2025 Product Release - Pylon](https://www.pylonlending.com/resources/august-2025-product-release)
 - [Beyond the wholesale model - Pylon](https://www.pylonlending.com/resources/beyond-the-wholesale-model)
