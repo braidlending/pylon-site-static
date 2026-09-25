@@ -1,0 +1,34 @@
+# Keeps the home page rate card live: every 15 minutes, pull the rate spreadsheet feed and publish
+# api/mortgage-rate/index.json when the numbers change (GitHub Pages redeploys on the commit).
+name: Refresh mortgage rate
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: refresh-rate
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Refresh rate
+        env:
+          RATE_SOURCE_URL: ${{ secrets.RATE_SOURCE_URL }}
+        run: node scripts/refresh-rate.mjs
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- api/mortgage-rate/index.json; then echo "no change"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898208+github-actions[bot]@users.noreply.github.com"
+          git add api/mortgage-rate/index.json
+          git commit -m "Refresh mortgage rate"
+          git pull --rebase
+          git push
